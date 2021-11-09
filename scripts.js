@@ -35,9 +35,9 @@ function onRiderLoader(name, res){
     });
 
     app.stage.on('touchstart', () => {
-        rider.state.setAnimation(0, 'walk', true);
+        rider.state.setAnimation(0, 'roar', true);
     });
     app.stage.on('touchend', () => {
-        rider.state.setAnimation(0, 'roar', true);
+        rider.state.setAnimation(0, 'walk', true);
     });
 }
