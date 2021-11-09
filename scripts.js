@@ -31,8 +31,8 @@ function onRiderLoader(name, res){
 
     cage.scale.set(scale, scale);
     cage.position.set(
-        (app.screen.width - cage.width) /2,
-        (app.screen.height - cage.height));
+        (app.screen.width - cage.width) * 0.5,
+        (app.screen.height - cage.height) * 0.5);
     app.stage.addChild(cage);
 
 
