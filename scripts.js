@@ -1,6 +1,6 @@
 let app = new PIXI.Application({
-    width: 500,
-    height: 500
+    width: window.innerWidth,
+    height: window.innerHeight
 });
 
 document.body.appendChild(app.view);
@@ -17,16 +17,27 @@ function onRiderLoader(name, res){
     rider.skeleton.setSkinByName('default');
     rider.skeleton.setSlotsToSetupPose();
 
-    rider.x = 150;
-    rider.y = 450;
-
-    rider.scale.set(0.3);
-
-
     rider.state.setAnimation(0, 'walk', true);
 
-    app.stage.addChild(rider);
+    const cage = new PIXI.Container();
+    cage.addChild(rider);
 
+    const localRect = rider.getLocalBounds();
+    rider.position.set(-localRect.x, -localRect.y);
+
+    const scale = Math.min(
+        (app.screen.width * 0.85) / cage.width,
+         (app.screen.height * 0.85) / cage.height);  
+
+    cage.scale.set(scale, scale);
+    cage.position.set(
+        (app.screen.width - cage.width) /2,
+        (app.screen.height - cage.height));
+    app.stage.addChild(cage);
+
+
+
+    //Listners
     app.stage.on('mouseup', () => {
         rider.state.setAnimation(0, 'walk', true);
     });
