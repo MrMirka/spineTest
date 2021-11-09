@@ -17,6 +17,9 @@ function onRiderLoader(name, res){
     rider.skeleton.setSkinByName('default');
     rider.skeleton.setSlotsToSetupPose();
 
+    rider.stateData.setMix('walk', 'roar',0.2);
+    rider.stateData.setMix('roar', 'walk',0.3);
+
     rider.state.setAnimation(0, 'walk', true);
 
     const cage = new PIXI.Container();
